@@ -1,6 +1,9 @@
 class EmployeeResource < ApplicationResource
   type :employees
 
+  allow_stat total: :count
+  allow_stat age: :average
+
   allow_filter :first_name
   allow_filter :age_gte do |scope, value|
     scope.where(['age >= ?', value])

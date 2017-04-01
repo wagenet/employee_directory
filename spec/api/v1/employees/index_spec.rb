@@ -97,4 +97,31 @@ RSpec.describe 'v1/employees#index', type: :request do
       end
     end
   end
+
+  describe 'stats' do
+    context 'when total count is requested' do
+      before do
+        2.times { create(:employee) }
+      end
+
+      it 'is returned correctly' do
+        get '/api/v1/employees', params: {
+          stats: { total: 'count' }
+        }
+        expect(json['meta']['stats']['total']['count']).to eq(2)
+      end
+    end
+
+    context 'when average age is requested' do
+      let!(:employee1) { create(:employee, age: 50) }
+      let!(:employee2) { create(:employee, age: 100) }
+
+      it 'is returned correctly' do
+        get '/api/v1/employees', params: {
+          stats: { age: 'average' }
+        }
+        expect(json['meta']['stats']['age']['average']).to eq(75)
+      end
+    end
+  end
 end
