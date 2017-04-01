@@ -2,7 +2,11 @@ class EmployeeResource < ApplicationResource
   type :employees
 
   allow_stat total: :count
-  allow_stat age: :average
+  allow_stat age: [:average] do
+    median do |scope, attr|
+      scope.order(attr).offset(scope.count / 2).limit(1).pluck(attr).first
+    end
+  end
 
   allow_filter :first_name
   allow_filter :age_gte do |scope, value|

@@ -123,5 +123,19 @@ RSpec.describe 'v1/employees#index', type: :request do
         expect(json['meta']['stats']['age']['average']).to eq(75)
       end
     end
+
+    context 'when median is requested' do
+      let!(:employee1) { create(:employee, age: 40) }
+      let!(:employee2) { create(:employee, age: 50) }
+      let!(:employee3) { create(:employee, age: 76) }
+
+      it 'is returned correctly' do
+        get '/api/v1/employees', params: {
+          stats: { age: 'median' }
+        }
+        expect(json['meta']['stats']['age']['median'])
+          .to eq(50)
+      end
+    end
   end
 end
