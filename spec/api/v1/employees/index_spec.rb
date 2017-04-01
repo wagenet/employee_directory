@@ -12,6 +12,20 @@ RSpec.describe 'v1/employees#index', type: :request do
     end
   end
 
+  describe 'pagination' do
+    let!(:employee1) { create(:employee) }
+    let!(:employee2) { create(:employee) }
+    let!(:employee3) { create(:employee) }
+    let!(:employee4) { create(:employee) }
+
+    it 'paginates correctly' do
+      get '/api/v1/employees', params: {
+        page: { size: 2, number: 2 }
+      }
+      expect(json_ids(true)).to eq([employee3.id, employee4.id])
+    end
+  end
+
   describe 'sorting' do
     context 'on first_name' do
       let!(:a) { create(:employee, first_name: 'ADAM') }
