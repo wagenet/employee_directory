@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: employee_directory_development
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: employee_directory_test
+  pool: 5

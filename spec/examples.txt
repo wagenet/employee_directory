@@ -1,0 +1,4 @@
+example_id                                 | status | run_time        |
+------------------------------------------ | ------ | --------------- |
+./spec/api/v1/employees/index_spec.rb[1:1] | passed | 0.0089 seconds  |
+./spec/api/v1/employees/show_spec.rb[1:1]  | passed | 0.51543 seconds |
