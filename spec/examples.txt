@@ -1,4 +1,8 @@
-example_id                                 | status | run_time        |
------------------------------------------- | ------ | --------------- |
-./spec/api/v1/employees/index_spec.rb[1:1] | passed | 0.0089 seconds  |
-./spec/api/v1/employees/show_spec.rb[1:1]  | passed | 0.51543 seconds |
+example_id                                     | status | run_time        |
+---------------------------------------------- | ------ | --------------- |
+./spec/api/v1/employees/index_spec.rb[1:1:1]   | passed | 0.00838 seconds |
+./spec/api/v1/employees/index_spec.rb[1:2:1:1] | passed | 0.00821 seconds |
+./spec/api/v1/employees/index_spec.rb[1:2:1:2] | passed | 0.00843 seconds |
+./spec/api/v1/employees/index_spec.rb[1:3:1:1] | passed | 0.52597 seconds |
+./spec/api/v1/employees/index_spec.rb[1:3:2:1] | passed | 0.00895 seconds |
+./spec/api/v1/employees/show_spec.rb[1:1]      | passed | 0.00663 seconds |

@@ -34,6 +34,28 @@ RSpec.describe 'v1/employees#index', type: :request do
     end
   end
 
+  describe 'sorting' do
+    context 'on first_name' do
+      let!(:a) { create(:employee, first_name: 'Adam') }
+      let!(:b) { create(:employee, first_name: 'Brian') }
+      let!(:c) { create(:employee, first_name: 'Cindy') }
+
+      it 'sorts correctly ascending' do
+        get '/api/v1/employees', params: {
+          sort: 'first_name'
+        }
+        expect(json_ids(true)).to eq([a.id, b.id, c.id])
+      end
+
+      it 'sorts correctly descending' do
+        get '/api/v1/employees', params: {
+          sort: '-first_name'
+        }
+        expect(json_ids(true)).to eq([c.id, b.id, a.id])
+      end
+    end
+  end
+
   describe 'filtering' do
     context 'when filtering on first_name' do
       let!(:joe1) { create(:employee, first_name: 'Joe') }
