@@ -5,4 +5,13 @@ class EmployeeResource < ApplicationResource
   allow_filter :age_gte do |scope, value|
     scope.where(['age >= ?', value])
   end
+
+  sort do |scope, att, dir|
+    if att == :first_name
+      dir = 'desc' if dir == :dsc
+      scope.order("upper(first_name) #{dir}")
+    else
+      scope.order(att => dir)
+    end
+  end
 end

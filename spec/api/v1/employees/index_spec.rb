@@ -14,9 +14,9 @@ RSpec.describe 'v1/employees#index', type: :request do
 
   describe 'sorting' do
     context 'on first_name' do
-      let!(:a) { create(:employee, first_name: 'Adam') }
-      let!(:b) { create(:employee, first_name: 'Brian') }
-      let!(:c) { create(:employee, first_name: 'Cindy') }
+      let!(:a) { create(:employee, first_name: 'ADAM') }
+      let!(:b) { create(:employee, first_name: 'brian') }
+      let!(:c) { create(:employee, first_name: 'CINDY') }
 
       it 'sorts correctly ascending' do
         get '/api/v1/employees', params: {
