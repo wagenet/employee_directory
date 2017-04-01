@@ -6,6 +6,10 @@ class EmployeeResource < ApplicationResource
     scope.where(['age >= ?', value])
   end
 
+  paginate do |scope, current_page, per_page|
+    scope.paginate(page: current_page, per_page: per_page)
+  end
+
   sort do |scope, att, dir|
     if att == :first_name
       dir = 'desc' if dir == :dsc
