@@ -25,5 +25,18 @@ RSpec.describe 'v1/employees#index', type: :request do
         expect(json_ids(true)).to match_array([joe1.id, joe2.id])
       end
     end
+
+    context 'when filtering on age' do
+      let!(:young) { create(:employee, age: 59) }
+      let!(:equal) { create(:employee, age: 60) }
+      let!(:old)   { create(:employee, age: 61) }
+
+      it 'filters correctly' do
+        get '/api/v1/employees', params: {
+          filter: { age_gte: 60 }
+        }
+        expect(json_ids(true)).to match_array([equal.id, old.id])
+      end
+    end
   end
 end
