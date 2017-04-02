@@ -12,6 +12,7 @@ gem 'puma', '~> 3.0'
 gem 'jsonapi_suite', '~> 0.5'
 gem 'jsonapi-rails', '~> 0.1'
 gem 'kaminari', '~> 0.17'
+gem 'numbers_in_words'
 
 group :development, :test do
   gem 'pry'

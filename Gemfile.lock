@@ -102,6 +102,8 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    numbers_in_words (0.4.0)
+      activesupport
     pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -195,6 +197,7 @@ DEPENDENCIES
   jsonapi_suite (~> 0.5)
   kaminari (~> 0.17)
   listen (~> 3.0.5)
+  numbers_in_words
   pg
   pry
   pry-byebug
