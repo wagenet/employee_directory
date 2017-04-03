@@ -31,17 +31,32 @@ RSpec.describe 'v1/employees#index', type: :request do
           department_id: department2.id
       end
 
+      let!(:team1) do
+        team = build(:team)
+        employee.teams << team
+        team
+      end
+
+      let!(:team2) do
+        team = build(:team)
+        employee.teams << team
+        team
+      end
+
       it 'returns relevant associations in response' do
         get '/api/v1/employees', params: {
-          include: 'positions.department'
+          include: 'teams,positions.department'
         }
         json_positions = json_includes('positions')
         json_departments = json_includes('departments')
+        json_teams = json_includes('teams')
         expect(json_positions.length).to eq(2)
         assert_payload(:position, position1, json_positions[0])
         assert_payload(:position, position3, json_positions[1])
         assert_payload(:department, department1, json_departments[0])
         assert_payload(:department, department2, json_departments[1])
+        assert_payload(:team, team1, json_teams[0])
+        assert_payload(:team, team2, json_teams[1])
       end
     end
 
