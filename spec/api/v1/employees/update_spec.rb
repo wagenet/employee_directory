@@ -28,6 +28,8 @@ RSpec.describe 'v1/employees#update', type: :request do
         department_id: department.id
     end
 
+    let(:method) { 'update' }
+
     let!(:employee)   { create(:employee, first_name: 'Joe') }
     let!(:position)   { create_position }
     let!(:department) { create(:department) }
@@ -41,7 +43,7 @@ RSpec.describe 'v1/employees#update', type: :request do
           relationships: {
             positions: {
               data: [
-                { type: 'positions', id: position.id.to_s, method: 'update' }
+                { type: 'positions', id: position.id.to_s, method: method }
               ]
             }
           }
@@ -53,7 +55,7 @@ RSpec.describe 'v1/employees#update', type: :request do
             attributes: { title: 'updated' },
             relationships: {
               department: {
-                data: { type: 'departments', id: department.id.to_s, method: 'update' }
+                data: { type: 'departments', id: department.id.to_s, method: method }
               }
             }
           },
@@ -72,6 +74,18 @@ RSpec.describe 'v1/employees#update', type: :request do
       expect(employee.first_name).to eq('updated')
       expect(position.title).to eq('updated')
       expect(department.name).to eq('updated')
+    end
+
+    context 'when destroying relations' do
+      let(:method) { 'destroy' }
+
+      it 'destroys all relationships' do
+        json_put "/api/v1/employees/#{employee.id}", payload
+        employee.reload
+        expect(employee.positions.count).to eq(0)
+        expect { position.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { department.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 end
