@@ -1,6 +1,10 @@
 class EmployeesController < ApplicationController
   jsonapi resource: EmployeeResource
 
+  strong_resource :employee
+
+  before_action :apply_strong_params, only: [:create]
+
   def index
     render_jsonapi(Employee.all)
   end

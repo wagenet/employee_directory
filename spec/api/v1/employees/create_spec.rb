@@ -43,5 +43,17 @@ RSpec.describe 'v1/employees#create', type: :request do
         })
       end
     end
+
+    context 'when an invalid parameter' do
+      before do
+        payload[:data][:attributes][:age] = 'thirty'
+      end
+
+      it 'raises an error' do
+        expect {
+          json_post '/api/v1/employees', payload
+        }.to raise_error(StrongerParameters::InvalidParameter)
+      end
+    end
   end
 end
