@@ -87,5 +87,18 @@ RSpec.describe 'v1/employees#update', type: :request do
         expect { department.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
+
+    context 'when disassociating relations' do
+      let(:method) { 'disassociate' }
+
+      it 'destroys all relationships' do
+        json_put "/api/v1/employees/#{employee.id}", payload
+        employee.reload
+        expect { position.reload }.to_not raise_error(ActiveRecord::RecordNotFound)
+        expect { department.reload }.to_not raise_error(ActiveRecord::RecordNotFound)
+        expect(position.department_id).to be_nil
+        expect(position.employee_id).to be_nil
+      end
+    end
   end
 end
