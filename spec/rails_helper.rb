@@ -27,4 +27,11 @@ RSpec.configure do |config|
       DatabaseCleaner.clean
     end
   end
+
+  def json_post(url, payload)
+    post url, params: payload.to_json, headers: {
+      'CONTENT_TYPE' => 'application/json',
+      'ACCEPT' => 'application/json'
+    }
+  end
 end

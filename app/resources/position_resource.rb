@@ -1,5 +1,6 @@
 class PositionResource < ApplicationResource
   type :positions
+  model Position
 
   allow_filter :title_prefix do |scope, value|
     scope.where(["title LIKE ?", "#{value}%"])

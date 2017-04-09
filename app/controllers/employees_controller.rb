@@ -9,4 +9,9 @@ class EmployeesController < ApplicationController
     scope = jsonapi_scope(Employee.where(id: params[:id]))
     render_jsonapi(scope.resolve.first, scope: false)
   end
+
+  def create
+    employee, _ = jsonapi_create.to_a
+    render_jsonapi(employee, scope: false)
+  end
 end

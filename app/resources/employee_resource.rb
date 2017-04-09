@@ -1,5 +1,6 @@
 class EmployeeResource < ApplicationResource
   type :employees
+  model Employee
 
   has_many :positions,
     scope: -> { Position.all },
