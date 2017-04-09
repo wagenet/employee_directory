@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 
   strong_resource :employee
 
-  before_action :apply_strong_params, only: [:create]
+  before_action :apply_strong_params, only: [:create, :update]
 
   def index
     render_jsonapi(Employee.all)
@@ -16,6 +16,16 @@ class EmployeesController < ApplicationController
 
   def create
     employee, success = jsonapi_create.to_a
+
+    if success
+      render_jsonapi(employee, scope: false)
+    else
+      render_errors_for(employee)
+    end
+  end
+
+  def update
+    employee, success = jsonapi_update.to_a
 
     if success
       render_jsonapi(employee, scope: false)
