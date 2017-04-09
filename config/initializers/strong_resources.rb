@@ -4,4 +4,12 @@ StrongResources.configure do
     attribute :last_name, :string
     attribute :age, :integer
   end
+
+  strong_resource :position do
+    attribute :title, :string
+  end
+
+  strong_resource :department do
+    attribute :name, :string
+  end
 end

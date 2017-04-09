@@ -56,4 +56,55 @@ RSpec.describe 'v1/employees#create', type: :request do
       end
     end
   end
+
+  describe 'nested create with positions and department' do
+    let(:payload) do
+      {
+        data: {
+          type: 'employees',
+          attributes: { first_name: 'Joe' },
+          relationships: {
+            positions: {
+              data: [
+                { type: 'positions', :'temp-id' => 'pos1', method: 'create' }
+              ]
+            }
+          }
+        },
+        included: [
+          {
+            type: 'positions',
+            :'temp-id' => 'pos1',
+            attributes: { title: 'specialist' },
+            relationships: {
+              department: {
+                data: { type: 'departments', :'temp-id' => 'dep1', method: 'create' }
+              }
+            }
+          },
+          {
+            type: 'departments',
+            :'temp-id' => 'dep1',
+            attributes: { name: 'safety' }
+          }
+        ]
+      }
+    end
+
+    it 'creates and sideloads all objects' do
+      expect {
+        json_post '/api/v1/employees', payload
+      }.to change { Employee.count }.by(1)
+      employee = Employee.last
+      position = employee.positions[0]
+      department = position.department
+
+      expect(employee.first_name).to eq('Joe')
+      expect(position.title).to eq('specialist')
+      expect(department.name).to eq('safety')
+
+      expect(json_includes('positions')).to be_present
+      expect(json_includes('departments')).to be_present
+    end
+  end
 end
