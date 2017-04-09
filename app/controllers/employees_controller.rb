@@ -11,7 +11,12 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    employee, _ = jsonapi_create.to_a
-    render_jsonapi(employee, scope: false)
+    employee, success = jsonapi_create.to_a
+
+    if success
+      render_jsonapi(employee, scope: false)
+    else
+      render_errors_for(employee)
+    end
   end
 end
