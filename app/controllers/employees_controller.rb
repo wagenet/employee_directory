@@ -33,4 +33,10 @@ class EmployeesController < ApplicationController
       render_errors_for(employee)
     end
   end
+
+  def destroy
+    employee = Employee.find(params[:id])
+    employee.destroy
+    render_jsonapi(employee, scope: false)
+  end
 end
