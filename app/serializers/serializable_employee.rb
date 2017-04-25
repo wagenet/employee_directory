@@ -8,4 +8,5 @@ class SerializableEmployee < JSONAPI::Serializable::Resource
   attribute :updated_at
 
   has_many :positions
+  has_one :current_position
 end

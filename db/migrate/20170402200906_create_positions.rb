@@ -4,6 +4,7 @@ class CreatePositions < ActiveRecord::Migration[5.0]
       t.belongs_to :employee, index: true
       t.belongs_to :department, index: true
       t.string :title
+      t.integer :historical_index
 
       t.timestamps
     end

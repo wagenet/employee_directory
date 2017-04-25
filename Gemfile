@@ -14,6 +14,7 @@ gem 'jsonapi-rails', '~> 0.1'
 gem 'kaminari', '~> 0.17'
 
 group :development, :test do
+  gem 'faker'
   gem 'pry'
   gem 'pry-byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'

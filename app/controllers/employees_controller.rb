@@ -2,8 +2,8 @@ class EmployeesController < ApplicationController
   jsonapi resource: EmployeeResource
 
   strong_resource :employee do
-    has_many :positions do
-      belongs_to :department
+    has_many :positions, destroy: true do
+      belongs_to :department, destroy: true
     end
   end
 

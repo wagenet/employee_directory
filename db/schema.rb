@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20170402202841) do
     t.integer  "employee_id"
     t.integer  "department_id"
     t.string   "title"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "historical_index"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["department_id"], name: "index_positions_on_department_id", using: :btree
     t.index ["employee_id"], name: "index_positions_on_employee_id", using: :btree
   end
