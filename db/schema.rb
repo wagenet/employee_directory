@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_143830) do
+ActiveRecord::Schema.define(version: 2019_05_06_195722) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2018_09_04_143830) do
     t.index ["notable_type", "notable_id"], name: "index_notes_on_notable_type_and_notable_id"
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "scope_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_permissions_on_role_id"
+    t.index ["scope_id"], name: "index_permissions_on_scope_id"
+  end
+
   create_table "positions", force: :cascade do |t|
     t.integer "employee_id"
     t.string "title"
@@ -53,6 +62,18 @@ ActiveRecord::Schema.define(version: 2018_09_04_143830) do
     t.integer "department_id"
     t.index ["department_id"], name: "index_positions_on_department_id"
     t.index ["employee_id"], name: "index_positions_on_employee_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scopes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -83,4 +104,5 @@ ActiveRecord::Schema.define(version: 2018_09_04_143830) do
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_teams_on_department_id"
   end
+
 end
