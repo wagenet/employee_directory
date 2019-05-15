@@ -46,6 +46,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # gem 'graphiti', '~> 1.0'
 gem 'graphiti', github: "wagenet/graphiti", branch: "graphiti-rails"
+gem 'graphiti-rails', github: "graphiti-api/graphiti-rails", branch: "master"
+
 gem 'kaminari', '~> 1.0'
 gem 'responders', '~> 2.4'
 group :development, :test do
