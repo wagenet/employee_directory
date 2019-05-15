@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::API
-  include Graphiti::Rails
-  include Graphiti::Responders
+  # Previously, we applied these by default
+  # Now need to be explicit
+  respond_to :json, :jsonapi
 
-  register_exception Graphiti::Errors::RecordNotFound,
-    status: 404
+  # NO LONGER INCLUDE THESE
+  #include Graphiti::Rails
+  #include Graphiti::Responders
 
-  rescue_from Exception do |e|
-    handle_exception(e)
-  end
+  # NO LONGER MANUALLY REGISTER
+  #register_exception Graphiti::Errors::RecordNotFound,
+    #status: 404
 end

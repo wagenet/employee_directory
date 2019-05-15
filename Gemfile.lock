@@ -1,3 +1,33 @@
+GIT
+  remote: https://github.com/wagenet/graphiti-rails.git
+  revision: 965b81fc74015725b2511717023dc8a8a3d20fc2
+  branch: railtie
+  specs:
+    graphiti-rails (0.1.0)
+      graphiti (~> 1.0)
+      rails (>= 5.0)
+      rescue_registry
+
+GIT
+  remote: https://github.com/wagenet/graphiti.git
+  revision: 1fdf400d0cc4f35d135d39fdd7ff8a76e873141a
+  branch: graphiti-rails
+  specs:
+    graphiti (1.1.0)
+      activesupport (>= 4.1, < 6)
+      concurrent-ruby (~> 1.0)
+      dry-types (~> 0.15)
+      graphiti_errors (~> 1.1.0)
+      jsonapi-serializable (~> 0.3.0)
+
+GIT
+  remote: https://github.com/wagenet/rescue_registry.git
+  revision: 2ae810a80237d7e4ae1f35bebeb2d0c659868d01
+  branch: master
+  specs:
+    rescue_registry (0.1.0)
+      rails (>= 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,6 +77,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
+    coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     database_cleaner (1.7.0)
@@ -61,8 +92,8 @@ GEM
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.2)
     dry-inflector (0.1.2)
-    dry-logic (0.5.0)
-      dry-container (~> 0.2, >= 0.2.6)
+    dry-logic (0.6.1)
+      concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
     dry-types (0.15.0)
@@ -83,13 +114,7 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    graphiti (1.0.0)
-      activesupport (>= 4.1, < 6)
-      concurrent-ruby (~> 1.0)
-      dry-types (~> 0.15)
-      graphiti_errors (~> 1.0.beta.1)
-      jsonapi-serializable (~> 0.3.0)
-    graphiti_errors (1.0.0)
+    graphiti_errors (1.1.0)
       jsonapi-serializable (~> 0.1)
     graphiti_spec_helpers (1.0.alpha.6)
       graphiti (>= 1.0.alpha.1)
@@ -131,6 +156,12 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
+      pry (~> 0.10)
     puma (3.12.0)
     rack (2.0.5)
     rack-test (1.1.0)
@@ -218,12 +249,16 @@ DEPENDENCIES
   database_cleaner (~> 1.6)
   factory_bot_rails (~> 4.0)
   faker (~> 1.7)
-  graphiti (~> 1.0)
+  graphiti (~> 1.0)!
+  graphiti-rails!
   graphiti_spec_helpers
   kaminari (~> 1.0)
   listen (>= 3.0.5, < 3.2)
+  pry
+  pry-byebug
   puma (~> 3.11)
   rails (~> 5.2.1)
+  rescue_registry!
   responders (~> 2.4)
   rspec-rails (~> 3.5.2)
   spring

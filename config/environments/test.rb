@@ -22,8 +22,10 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  # Otherwise, API tests will raise error instead of rendering one
+  # This means we have a new backwards-incompatible default
+  # It also means GraphitiErrors.enable!/disable! no longer works
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
