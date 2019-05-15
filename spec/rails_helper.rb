@@ -27,14 +27,12 @@ require 'graphiti_spec_helpers/rspec'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+GraphitiErrors.disable!
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include GraphitiSpecHelpers::RSpec
   config.include GraphitiSpecHelpers::Sugar
-
-  config.before :each do
-    GraphitiErrors.disable!
-  end
 
   # bootstrap database cleaner
   config.before(:suite) do

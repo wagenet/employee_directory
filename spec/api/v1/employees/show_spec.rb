@@ -18,4 +18,19 @@ RSpec.describe "employees#show", type: :request do
       expect(d.id).to eq(employee.id)
     end
   end
+
+  describe 'when not found' do
+    around do |example|
+      disabled = GraphitiErrors.disabled?
+      GraphitiErrors.enable!
+      example.run
+    ensure
+      GraphitiErrors.disable! if disabled
+    end
+
+    it 'renders correct error and status' do
+      jsonapi_get "/api/v1/employees/999"
+      expect(response.status).to eq(404)
+    end
+  end
 end

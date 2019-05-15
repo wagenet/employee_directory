@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/wagenet/graphiti.git
+  revision: 68142d7796e8e21e9f9c41df4a9489aef1ceaa71
+  branch: graphiti-rails
+  specs:
+    graphiti (1.1.0)
+      activesupport (>= 4.1, < 6)
+      concurrent-ruby (~> 1.0)
+      dry-types (~> 0.15)
+      graphiti_errors (~> 1.1.0)
+      jsonapi-serializable (~> 0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,7 +59,8 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
-    concurrent-ruby (1.0.5)
+    coderay (1.1.2)
+    concurrent-ruby (1.1.5)
     crass (1.0.4)
     database_cleaner (1.7.0)
     diff-lcs (1.3)
@@ -61,8 +74,8 @@ GEM
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.2)
     dry-inflector (0.1.2)
-    dry-logic (0.5.0)
-      dry-container (~> 0.2, >= 0.2.6)
+    dry-logic (0.6.1)
+      concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
     dry-types (0.15.0)
@@ -83,18 +96,12 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    graphiti (1.0.0)
-      activesupport (>= 4.1, < 6)
-      concurrent-ruby (~> 1.0)
-      dry-types (~> 0.15)
-      graphiti_errors (~> 1.0.beta.1)
-      jsonapi-serializable (~> 0.3.0)
-    graphiti_errors (1.0.0)
+    graphiti_errors (1.1.0)
       jsonapi-serializable (~> 0.1)
     graphiti_spec_helpers (1.0.alpha.6)
       graphiti (>= 1.0.alpha.1)
       rspec (~> 3.0)
-    i18n (1.1.0)
+    i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.0)
     jsonapi-serializable (0.3.1)
@@ -131,6 +138,12 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
+      pry (~> 0.10)
     puma (3.12.0)
     rack (2.0.5)
     rack-test (1.1.0)
@@ -218,10 +231,12 @@ DEPENDENCIES
   database_cleaner (~> 1.6)
   factory_bot_rails (~> 4.0)
   faker (~> 1.7)
-  graphiti (~> 1.0)
+  graphiti!
   graphiti_spec_helpers
   kaminari (~> 1.0)
   listen (>= 3.0.5, < 3.2)
+  pry
+  pry-byebug
   puma (~> 3.11)
   rails (~> 5.2.1)
   responders (~> 2.4)
@@ -232,7 +247,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   1.16.4
+   1.17.3
