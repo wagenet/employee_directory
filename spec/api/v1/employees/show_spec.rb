@@ -21,11 +21,7 @@ RSpec.describe "employees#show", type: :request do
 
   describe 'when not found' do
     around do |example|
-      disabled = GraphitiErrors.disabled?
-      GraphitiErrors.enable!
-      example.run
-    ensure
-      GraphitiErrors.disable! if disabled
+      handle_request_exceptions { example.run }
     end
 
     it 'renders correct error and status' do

@@ -29,10 +29,26 @@ ActiveRecord::Migration.maintain_test_schema!
 
 GraphitiErrors.disable!
 
+module SpecHelpers
+  def handle_request_exceptions(handle = true)
+    original_value = Rails.application.config.action_dispatch.handle_exceptions
+
+    Rails.application.config.action_dispatch.handle_exceptions = handle
+    # Also set this since it may have been cached
+    Rails.application.env_config["action_dispatch.show_exceptions"] = handle
+
+    yield
+
+    Rails.application.env_config["action_dispatch.show_exceptions"] = original_value
+    Rails.application.config.action_dispatch.handle_exceptions = original_value
+  end
+end
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include GraphitiSpecHelpers::RSpec
   config.include GraphitiSpecHelpers::Sugar
+  config.include SpecHelpers
 
   # bootstrap database cleaner
   config.before(:suite) do
